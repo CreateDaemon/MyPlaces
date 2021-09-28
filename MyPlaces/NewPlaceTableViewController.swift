@@ -7,8 +7,10 @@
 
 import UIKit
 
-class NewPlaceTableViewController: UITableViewController {
+class NewPlaceTableViewController: UITableViewController, UINavigationControllerDelegate {
 
+    @IBOutlet var newImagePlace: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -50,16 +52,25 @@ class NewPlaceTableViewController: UITableViewController {
     }
     
     // MARK: - Work with image
-extension NewPlaceTableViewController {
+extension NewPlaceTableViewController: UIImagePickerControllerDelegate {
     
     func chooseImagePicker(source: UIImagePickerController.SourceType) {
         
         if UIImagePickerController.isSourceTypeAvailable(source) {
             let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
             imagePicker.allowsEditing = true
             imagePicker.sourceType = source
             present(imagePicker, animated: true)
         }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        newImagePlace.image = info[.editedImage] as? UIImage
+        newImagePlace.contentMode = .scaleAspectFill
+        newImagePlace.clipsToBounds = true
+        dismiss(animated: true)
     }
 }
     /*
