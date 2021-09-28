@@ -14,6 +14,30 @@ class NewPlaceTableViewController: UITableViewController {
 
         
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.row == 0 {
+            let actionSheat = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            
+            let camera = UIAlertAction(title: "Camera", style: .default) { _ in
+                self.chooseImagePicker(source: .camera)
+            }
+            let photo = UIAlertAction(title: "Photo", style: .default) { _ in
+                self.chooseImagePicker(source: .photoLibrary)
+            }
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+            
+            actionSheat.addAction(camera)
+            actionSheat.addAction(photo)
+            actionSheat.addAction(cancel)
+            
+            present(actionSheat, animated: true)
+            
+        } else {
+            view.endEditing(true)
+        }
+    }
 }
 
     // MARK: - TextFiledDelegate
@@ -25,6 +49,19 @@ class NewPlaceTableViewController: UITableViewController {
         }
     }
     
+    // MARK: - Work with image
+extension NewPlaceTableViewController {
+    
+    func chooseImagePicker(source: UIImagePickerController.SourceType) {
+        
+        if UIImagePickerController.isSourceTypeAvailable(source) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = source
+            present(imagePicker, animated: true)
+        }
+    }
+}
     /*
     // MARK: - Navigation
 
