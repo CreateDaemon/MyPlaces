@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Старое Время@1x.png",
+      "filename" : "LaunchScreenImg@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Старое Время@2x.png",
+      "filename" : "LaunchScreenImg@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Старое Время@3x.png",
+      "filename" : "LaunchScreenImg@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
