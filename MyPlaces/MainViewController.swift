@@ -10,8 +10,8 @@ import UIKit
 class MainViewController: UITableViewController {
 
     let places = [
-        "The Box 99", "Tвропа", "New Time",
-        "Немо", "Семь пятниц", "Старое время",
+        "The Box 99", "Европа", "New Time",
+        "Немо", "Семь Пятниц", "Старое Время",
         "Мята", "Этаж", "Фасоль"
     ]
     
@@ -31,6 +31,7 @@ class MainViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
         cell.textLabel?.text = places[indexPath.row]
+        cell.imageView?.image = UIImage(named: places[indexPath.row])
         
         return cell
     }
