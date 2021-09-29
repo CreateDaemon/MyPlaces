@@ -6,42 +6,41 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MainViewController: UITableViewController {
 
-    var places = Places.getPlaces()
+    var places: Results<Places>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        places = realm.objects(Places.self)
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return places.count
+        return places.isEmpty ? 0 : places.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
 
         let plase = places[indexPath.row]
-        
+
         cell.nameLabelCell.text = plase.name
         cell.locationLabelCell.text = plase.location
         cell.typeLabelCell.text = plase.type
         
-        if plase.image != nil {
-            cell.imageCell.image = plase.image
-        } else {
-            cell.imageCell.image = UIImage(named: plase.name)
-        }
+        let image = UIImage(data: plase.imageData!)
         
+        cell.imageCell.image = image
+
         cell.imageCell.layer.cornerRadius = cell.imageCell.frame.size.height / 2
         cell.imageCell.clipsToBounds = true
-        
+
         return cell
     }
     
@@ -63,8 +62,8 @@ class MainViewController: UITableViewController {
         
         guard let newPlaceVC = unwindSegue.source
                 as? NewPlaceTableViewController else { return }
-        let newPlace = newPlaceVC.savePlace()
-        places.append(newPlace)
+        
+        newPlaceVC.savePlace() 
         tableView.reloadData()
     }
     

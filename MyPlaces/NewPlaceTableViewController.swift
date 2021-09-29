@@ -21,10 +21,10 @@ class NewPlaceTableViewController: UITableViewController, UINavigationController
         super.viewDidLoad()
         
         saveButton.isEnabled = false
-        
         placeName.addTarget(self, action: #selector(textFieldChange), for: .editingChanged)
     }
     
+    // MARK: - DidShowKeyboard + AlertChangeImage
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.row == 0 {
@@ -60,17 +60,25 @@ class NewPlaceTableViewController: UITableViewController, UINavigationController
     }
     
     // MARK: - savePlace
-    func savePlace() -> Places {
-        
-        let place: Places
+    func savePlace() {
+
+        let image: UIImage?
         
         if choiceImage {
-            place = Places(name: placeName.text!, location: placeLocation.text, type: placeType.text, imageEntertaiment: nil, image: placeImage.image)
+            image = placeImage.image!
         } else {
-            place = Places(name: placeName.text!, location: placeLocation.text, type: placeType.text, imageEntertaiment: nil, image: UIImage(named: "imagePlaceholder"))
+            image = UIImage(named: "imagePlaceholder")
         }
         
-        return place
+        guard let imageData = image?.pngData() else { return }
+        
+        let newPlace = Places(name: placeName.text!,
+                              location: placeLocation.text,
+                              type: placeLocation.text,
+                              imageData: imageData)
+        
+        StorageManager.saveObject(newPlace)
+        
     }
     
     @IBAction func cancelAction(_ sender: UIBarButtonItem) {
