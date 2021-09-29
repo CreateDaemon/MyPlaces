@@ -9,10 +9,11 @@ import UIKit
 
 class MainViewController: UITableViewController {
 
-    let places = Places.getPlaces()
+    var places = Places.getPlaces()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
     }
 
@@ -26,10 +27,18 @@ class MainViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
 
-        cell.nameLabelCell.text = places[indexPath.row].name
-        cell.locationLabelCell.text = places[indexPath.row].location
-        cell.typeLabelCell.text = places[indexPath.row].type
-        cell.imageCell.image = UIImage(named: places[indexPath.row].name)
+        let plase = places[indexPath.row]
+        
+        cell.nameLabelCell.text = plase.name
+        cell.locationLabelCell.text = plase.location
+        cell.typeLabelCell.text = plase.type
+        
+        if plase.image != nil {
+            cell.imageCell.image = plase.image
+        } else {
+            cell.imageCell.image = UIImage(named: plase.name)
+        }
+        
         cell.imageCell.layer.cornerRadius = cell.imageCell.frame.size.height / 2
         cell.imageCell.clipsToBounds = true
         
@@ -50,6 +59,13 @@ class MainViewController: UITableViewController {
     }
     */
 
-    @IBAction func cancelButton(_ unwindSegue: UIStoryboardSegue) {}
+    @IBAction func unwidSegue(_ unwindSegue: UIStoryboardSegue) {
+        
+        guard let newPlaceVC = unwindSegue.source
+                as? NewPlaceTableViewController else { return }
+        let newPlace = newPlaceVC.savePlace()
+        places.append(newPlace)
+        tableView.reloadData()
+    }
     
 }
