@@ -8,9 +8,14 @@
 import UIKit
 import RealmSwift
 
-class MainViewController: UITableViewController {
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var places: Results<Places>!
+    var ascendingSorting = true
+    
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet var buttonSorted: UIBarButtonItem!
+    @IBOutlet var segmented: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,12 +25,12 @@ class MainViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return places.isEmpty ? 0 : places.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
 
         let plase = places[indexPath.row]
@@ -47,7 +52,7 @@ class MainViewController: UITableViewController {
     
     // MARK: - Delete place
     
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let place = places[indexPath.row]
         
@@ -63,7 +68,7 @@ class MainViewController: UITableViewController {
         return swipeActions
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         85
     }
 
@@ -93,4 +98,32 @@ class MainViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    
+    @IBAction func sortedSegmented(_ sender: UISegmentedControl) {
+        
+        sorting()
+    }
+    
+    @IBAction func sortedButton(_ sender: UIBarButtonItem) {
+        
+        ascendingSorting.toggle()
+        
+        if ascendingSorting {
+            buttonSorted.image = UIImage(named: "AZ")
+        } else {
+            buttonSorted.image = UIImage(named: "ZA")
+        }
+        
+        sorting()
+    }
+    
+    private func sorting() {
+        
+        if segmented.selectedSegmentIndex == 0 {
+            places = places.sorted(byKeyPath: "date", ascending: ascendingSorting)
+        } else {
+            places = places.sorted(byKeyPath: "name", ascending: ascendingSorting)
+        }
+        tableView.reloadData()
+    }
 }
