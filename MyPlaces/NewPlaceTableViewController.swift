@@ -9,19 +9,21 @@ import UIKit
 
 class NewPlaceTableViewController: UITableViewController, UINavigationControllerDelegate {
 
+    var detailPlace: Places?
+    var choiceImage = false
+    
     @IBOutlet var placeImage: UIImageView!
     @IBOutlet var placeName: UITextField!
     @IBOutlet var placeLocation: UITextField!
     @IBOutlet var placeType: UITextField!
     @IBOutlet var saveButton: UIBarButtonItem!
     
-    var choiceImage = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         saveButton.isEnabled = false
         placeName.addTarget(self, action: #selector(textFieldChange), for: .editingChanged)
+        editDetailPlace()
     }
     
     // MARK: - DidShowKeyboard + AlertChangeImage
@@ -62,23 +64,63 @@ class NewPlaceTableViewController: UITableViewController, UINavigationController
     // MARK: - savePlace
     func savePlace() {
 
-        let image: UIImage?
-        
-        if choiceImage {
-            image = placeImage.image!
+        if detailPlace != nil {
+            
+            guard let imageData = placeImage.image?.pngData() else { return }
+            
+            try! realm.write {
+                detailPlace?.name = placeName.text!
+                detailPlace?.location = placeLocation.text
+                detailPlace?.type = placeType.text
+                detailPlace?.imageData = imageData
+            }
         } else {
-            image = UIImage(named: "imagePlaceholder")
+            let image: UIImage?
+            
+            if choiceImage {
+                image = placeImage.image!
+            } else {
+                image = UIImage(named: "imagePlaceholder")
+            }
+            
+            guard let imageData = image?.pngData() else { return }
+            
+            let newPlace = Places(name: placeName.text!,
+                                  location: placeLocation.text,
+                                  type: placeType.text,
+                                  imageData: imageData)
+            
+            StorageManager.saveObject(newPlace)
         }
         
-        guard let imageData = image?.pngData() else { return }
+    }
+    
+    // MARK: - Edit Place
+    private func editDetailPlace() {
         
-        let newPlace = Places(name: placeName.text!,
-                              location: placeLocation.text,
-                              type: placeLocation.text,
-                              imageData: imageData)
+        guard detailPlace != nil else { return }
+            
+            setingNavigationController()
+            saveButton.isEnabled = true
+            
+            guard let imageData = detailPlace?.imageData,
+                    let image = UIImage(data: imageData) else { return }
+            
+            placeName.text = detailPlace?.name
+            placeLocation.text = detailPlace?.location
+            placeType.text = detailPlace?.type
+            placeImage.image = image
+            placeImage.contentMode = .scaleAspectFill
         
-        StorageManager.saveObject(newPlace)
+    }
+    
+    private func setingNavigationController() {
         
+        guard let topItem = navigationController?.navigationBar.topItem else { return }
+        topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = nil
+        
+        title = detailPlace?.name
     }
     
     @IBAction func cancelAction(_ sender: UIBarButtonItem) {

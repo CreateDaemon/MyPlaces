@@ -70,6 +70,7 @@
                                     <outlet property="locationLabelCell" destination="XNK-4x-F7C" id="SKJ-NG-oWq"/>
                                     <outlet property="nameLabelCell" destination="Ize-Rr-5Zg" id="jYO-c1-FqH"/>
                                     <outlet property="typeLabelCell" destination="yZA-gI-LhJ" id="0HD-Cg-U3M"/>
+                                    <segue destination="GWD-rn-GTz" kind="show" identifier="detailPlace" id="uwf-8P-WkI"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -78,7 +79,7 @@
                             <outlet property="delegate" destination="8xc-VD-iG6" id="Pg2-Cm-WfT"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Places" id="jz8-dI-tcC">
+                    <navigationItem key="navigationItem" title="My Places" largeTitleDisplayMode="never" id="jz8-dI-tcC">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="hL6-SX-OXW">
                             <connections>
                                 <segue destination="alD-Tl-G07" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="js4-Oh-qbN"/>
@@ -137,7 +138,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Place Name" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PoY-2F-yOq">
+                                                        <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Place Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PoY-2F-yOq">
                                                             <rect key="frame" x="0.0" y="34.5" width="382" height="28.5"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="17"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" returnKeyType="done"/>
@@ -173,7 +174,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Place Location" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="wGn-fh-Pck">
+                                                        <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Place Location" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="wGn-fh-Pck">
                                                             <rect key="frame" x="0.0" y="33" width="382" height="26"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="17"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" returnKeyType="done"/>
@@ -209,7 +210,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Place Type" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dti-Fw-wCm">
+                                                        <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Place Type" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dti-Fw-wCm">
                                                             <rect key="frame" x="0.0" y="33" width="382" height="26"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="17"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" returnKeyType="done"/>
@@ -237,7 +238,7 @@
                             <outlet property="delegate" destination="GWD-rn-GTz" id="aaq-9H-UuP"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="New Place" id="zze-5e-mGX">
+                    <navigationItem key="navigationItem" title="New Place" largeTitleDisplayMode="always" id="zze-5e-mGX">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="5Ih-aJ-4lM">
                             <connections>
                                 <action selector="cancelAction:" destination="GWD-rn-GTz" id="wKb-Ll-iJb"/>
@@ -260,7 +261,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="piE-fi-c5f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="deD-ja-69P" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2398.5507246376815" y="160.71428571428569"/>
+            <point key="canvasLocation" x="1216" y="161"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mws-7F-Eqj">
@@ -279,14 +280,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SU4-bE-DaF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1507" y="161"/>
+            <point key="canvasLocation" x="1216" y="-623"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LCL-WC-WTK">
             <objects>
                 <navigationController id="5FX-sh-djA" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="C31-mY-cQH">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="C31-mY-cQH">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="35"/>
@@ -301,6 +302,9 @@
             <point key="canvasLocation" x="-442" y="162"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="uwf-8P-WkI"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Photo" width="195" height="196"/>
         <systemColor name="opaqueSeparatorColor">
