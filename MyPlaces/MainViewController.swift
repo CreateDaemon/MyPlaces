@@ -65,13 +65,17 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.typeLabelCell.text = place.type
         
         let image = UIImage(data: place.imageData!)
-        
         cell.imageCell.image = image
-
         cell.imageCell.layer.cornerRadius = cell.imageCell.frame.size.height / 2
         cell.imageCell.clipsToBounds = true
-
+        
+        cell.mainRatingControll.rating = Int(place.rating)
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     
@@ -151,11 +155,22 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     private func sorting() {
         
-        if segmented.selectedSegmentIndex == 0 {
+        switch segmented.selectedSegmentIndex
+        {
+        case 0:
             places = places.sorted(byKeyPath: "date", ascending: ascendingSorting)
-        } else {
+        case 1:
             places = places.sorted(byKeyPath: "name", ascending: ascendingSorting)
+        case 2:
+            places = places.sorted(byKeyPath: "rating", ascending: ascendingSorting)
+        default: break
         }
+        
+//        if segmented.selectedSegmentIndex == 0 {
+//            places = places.sorted(byKeyPath: "date", ascending: ascendingSorting)
+//        } else {
+//            places = places.sorted(byKeyPath: "name", ascending: ascendingSorting)
+//        }
         tableView.reloadData()
     }
 }

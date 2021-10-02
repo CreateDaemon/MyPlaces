@@ -9,7 +9,7 @@ import UIKit
 
 class NewPlaceTableViewController: UITableViewController, UINavigationControllerDelegate {
 
-    var detailPlace: Places?
+    var detailPlace: Places!
     var choiceImage = false
     
     @IBOutlet var placeImage: UIImageView!
@@ -17,6 +17,7 @@ class NewPlaceTableViewController: UITableViewController, UINavigationController
     @IBOutlet var placeLocation: UITextField!
     @IBOutlet var placeType: UITextField!
     @IBOutlet var saveButton: UIBarButtonItem!
+    @IBOutlet var ratingControll: RatingControll!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +74,7 @@ class NewPlaceTableViewController: UITableViewController, UINavigationController
                 detailPlace?.location = placeLocation.text
                 detailPlace?.type = placeType.text
                 detailPlace?.imageData = imageData
+                detailPlace?.rating = Double(ratingControll.rating)
             }
         } else {
             let image: UIImage?
@@ -88,7 +90,8 @@ class NewPlaceTableViewController: UITableViewController, UINavigationController
             let newPlace = Places(name: placeName.text!,
                                   location: placeLocation.text,
                                   type: placeType.text,
-                                  imageData: imageData)
+                                  imageData: imageData,
+                                  rating: Double(ratingControll.rating))
             
             StorageManager.saveObject(newPlace)
         }
@@ -111,6 +114,7 @@ class NewPlaceTableViewController: UITableViewController, UINavigationController
             placeType.text = detailPlace?.type
             placeImage.image = image
             placeImage.contentMode = .scaleAspectFill
+        ratingControll.rating = Int(detailPlace.rating)
         
     }
     

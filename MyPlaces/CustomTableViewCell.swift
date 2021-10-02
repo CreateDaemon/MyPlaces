@@ -14,5 +14,7 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet var nameLabelCell: UILabel!
     @IBOutlet var locationLabelCell: UILabel!
     @IBOutlet var typeLabelCell: UILabel!
+    @IBOutlet var mainRatingControll: MainRatingControll!
+    
     
 }
