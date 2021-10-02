@@ -11,6 +11,7 @@
 		E54B1C582708A6F7007CF8BB /* MainRatingControll.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B1C572708A6F7007CF8BB /* MainRatingControll.swift */; };
 		E5740F8F27051B4500DCE9DB /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5740F8E27051B4500DCE9DB /* StorageManager.swift */; };
 		E58BD0512708783F00C417FB /* RatingControll.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58BD0502708783F00C417FB /* RatingControll.swift */; };
+		E5A6F86F2708CF6800502B26 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A6F86E2708CF6800502B26 /* MapViewController.swift */; };
 		E5AFC9BE27032B59001C380D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AFC9BD27032B59001C380D /* AppDelegate.swift */; };
 		E5AFC9C027032B59001C380D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AFC9BF27032B59001C380D /* SceneDelegate.swift */; };
 		E5AFC9C527032B59001C380D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5AFC9C327032B59001C380D /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 		E54B1C572708A6F7007CF8BB /* MainRatingControll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRatingControll.swift; sourceTree = "<group>"; };
 		E5740F8E27051B4500DCE9DB /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		E58BD0502708783F00C417FB /* RatingControll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControll.swift; sourceTree = "<group>"; };
+		E5A6F86E2708CF6800502B26 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		E5AFC9BA27032B59001C380D /* MyPlaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyPlaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5AFC9BD27032B59001C380D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5AFC9BF27032B59001C380D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				E5AFC9BF27032B59001C380D /* SceneDelegate.swift */,
 				E5AFC9C327032B59001C380D /* Main.storyboard */,
 				E5E8EAE427038FE300F7DDF7 /* NewPlaceTableViewController.swift */,
+				E5A6F86E2708CF6800502B26 /* MapViewController.swift */,
 				E5AFC9D127032C5F001C380D /* MainViewController.swift */,
 				E54B1C572708A6F7007CF8BB /* MainRatingControll.swift */,
 				E58BD0502708783F00C417FB /* RatingControll.swift */,
@@ -231,6 +234,7 @@
 				E54B1C582708A6F7007CF8BB /* MainRatingControll.swift in Sources */,
 				E5E8EAE527038FE300F7DDF7 /* NewPlaceTableViewController.swift in Sources */,
 				E58BD0512708783F00C417FB /* RatingControll.swift in Sources */,
+				E5A6F86F2708CF6800502B26 /* MapViewController.swift in Sources */,
 				E5AFC9D227032C5F001C380D /* MainViewController.swift in Sources */,
 				E5AFC9BE27032B59001C380D /* AppDelegate.swift in Sources */,
 				E5740F8F27051B4500DCE9DB /* StorageManager.swift in Sources */,
