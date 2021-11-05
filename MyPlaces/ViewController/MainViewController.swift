@@ -87,7 +87,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let deleteContextualAction = [UIContextualAction(
             style: .destructive,
-            title: "Delete") { _, _, _  in
+            title: "Delete") { _, _, _ in
             StorageManager.deleteObject(place)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }]
@@ -166,11 +166,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         default: break
         }
         
-//        if segmented.selectedSegmentIndex == 0 {
-//            places = places.sorted(byKeyPath: "date", ascending: ascendingSorting)
-//        } else {
-//            places = places.sorted(byKeyPath: "name", ascending: ascendingSorting)
-//        }
         tableView.reloadData()
     }
 }

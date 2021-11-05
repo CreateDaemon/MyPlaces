@@ -18,9 +18,20 @@ class NewPlaceTableViewController: UITableViewController, UINavigationController
     @IBOutlet var placeType: UITextField!
     @IBOutlet var saveButton: UIBarButtonItem!
     @IBOutlet var ratingControll: RatingControll!
+    @IBOutlet var showMap: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if detailPlace == nil {
+            showMap.isHidden = true
+        }
+        
+        MapViewController.closureLocation = { [unowned self] location in
+            DispatchQueue.main.async {
+                self.placeLocation.text = location
+            }
+        }
         
         saveButton.isEnabled = false
         placeName.addTarget(self, action: #selector(textFieldChange), for: .editingChanged)
@@ -66,9 +77,15 @@ class NewPlaceTableViewController: UITableViewController, UINavigationController
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        guard segue.identifier == "showMap" else { return }
-        guard let mapVC = segue.destination as? MapViewController else { return }
-        mapVC.place = detailPlace
+        guard let indentifier = segue.identifier,
+                let mapVC = segue.destination as? MapViewController else { return }
+        
+        mapVC.incomeSegueIdentifier = indentifier
+        
+        if indentifier == "showPlace" {
+            guard let mapVC = segue.destination as? MapViewController else { return }
+            mapVC.place = detailPlace
+        }
     }
 
     
@@ -124,7 +141,7 @@ class NewPlaceTableViewController: UITableViewController, UINavigationController
             placeType.text = detailPlace?.type
             placeImage.image = image
             placeImage.contentMode = .scaleAspectFill
-        ratingControll.rating = Int(detailPlace.rating)
+            ratingControll.rating = Int(detailPlace.rating)
         
     }
     
